@@ -1,0 +1,13 @@
+language: java
+jdk:
+  - jdk8
+
+script: "mvn clean package -Dmaven.test.skip=true"
+
+branches:
+  only:
+    - master
+
+notifications:
+  email:
+    - 553569682@qq.com
