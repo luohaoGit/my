@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="UTF-8">
+    <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta http-equiv="pragma" content="no-cache" />
+    <meta http-equiv= "Cache-Control" content= "no-cache" />
+    <meta http-equiv= "Expires" content= "0" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black" />
+    <meta content="telephone=no" name="format-detection" />
+    <link rel="shortcut icon" href="http://www.suning.com/favicon.ico" type="image/x-icon">
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
+    <link rel="stylesheet" href="css/active.css">
+    <title>活动</title>
+</head>
+<body>
+<div class="content">
+    <div class="activity">
+        <div class="activity-title">中国移动指定营业厅现场赠书活动</div>
+        <div class="activity-p">江苏省</div>
+        <div class="list-block">
+            <ul>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">地市</div>
+                            <div class="item-input">
+                                <input type="text" id='picker01' placeholder="请选择地市">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">区县</div>
+                            <div class="item-input">
+                                <input type="text" id='picker02' placeholder="请选择区县">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+                <li>
+                    <div class="item-content">
+                        <div class="item-media"><i class="icon icon-form-name"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title label">营业厅</div>
+                            <div class="item-input">
+                                <input type="text" id='picker03' placeholder="请选择营业厅">
+                            </div>
+                        </div>
+                    </div>
+                </li>
+            </ul>
+        </div>
+        <div class="list-block">
+            <ul class="activity-user">
+                <li>
+                    <label class="label-checkbox item-content">
+                        <input type="radio" checked name="my-radio">
+                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                        <div class="item-inner border-null">
+                            <div class="item-title">客户</div>
+                        </div>
+                    </label>
+                </li>
+                <li>
+                    <label class="label-checkbox item-content">
+                        <input type="radio" name="my-radio">
+                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
+                        <div class="item-inner">
+                            <div class="item-title">营业员</div>
+                        </div>
+                    </label>
+                </li>
+            </ul>
+        </div>
+        <h5 class="activity-tip" style="display: block">营业厅地址:<span id="">XXXXXX</span></h5>
+        <div class="content-block">
+            <p><a href="#" class="button button-submit">确认</a></p>
+        </div>
+    </div>
+</div>
+
+<script type="text/javascript">
+    var urlConfig = {
+        cityUrl: 'data/tsconfig.json'
+    }
+</script>
+
+<script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
+<script type='text/javascript' src='js/active.js' charset='utf-8'></script>
+
+</body>
+</html>
+
+
