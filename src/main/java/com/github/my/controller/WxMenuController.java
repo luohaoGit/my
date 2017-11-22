@@ -53,32 +53,29 @@ public class WxMenuController implements WxMpMenuService {
     button1.setUrl("http://cmcc.yueduyuele.com/Home/h5index");
 
     WxMenuButton button2 = new WxMenuButton();
-    button2.setType(MenuButtonType.CLICK);
     button2.setName("现场活动");
-    button2.setKey("MENU1");
+
+    WxMenuButton button21 = new WxMenuButton();
+    button21.setType(MenuButtonType.VIEW);
+    button21.setName("营业厅");
+    button21.setUrl("http://139.196.141.0/static/active.html");
+
+    WxMenuButton button22 = new WxMenuButton();
+    button22.setType(MenuButtonType.VIEW);
+    button22.setName("营业员");
+    button22.setUrl("http://139.196.141.0/static/detail.html");
+
+    WxMenuButton button23 = new WxMenuButton();
+    button23.setType(MenuButtonType.CLICK);
+    button23.setName("验证码");
+    button23.setKey("VERIFY_CODE");
+
+    button2.getSubButtons().add(button21);
+    button2.getSubButtons().add(button22);
+    button2.getSubButtons().add(button23);
 
     menu.getButtons().add(button1);
     menu.getButtons().add(button2);
-    //menu.getButtons().add(button3);
-
-/*    WxMenuButton button31 = new WxMenuButton();
-    button31.setType(MenuButtonType.VIEW);
-    button31.setName("搜索");
-    button31.setUrl("http://www.soso.com/");
-
-    WxMenuButton button32 = new WxMenuButton();
-    button32.setType(MenuButtonType.VIEW);
-    button32.setName("视频");
-    button32.setUrl("http://v.qq.com/");
-
-    WxMenuButton button33 = new WxMenuButton();
-    button33.setType(MenuButtonType.CLICK);
-    button33.setName("赞一下我们");
-    button33.setKey("V1001_GOOD");
-
-    button3.getSubButtons().add(button31);
-    button3.getSubButtons().add(button32);
-    button3.getSubButtons().add(button33);*/
 
     return this.wxService.getMenuService().menuCreate(menu);
   }

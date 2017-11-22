@@ -1,6 +1,5 @@
 package com.github.my.controller.business;
 
-import com.github.my.domain.po.User;
 import com.github.my.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,8 +15,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("test")
-    public void test(){
+    @RequestMapping("custom")
+    public void custom(){
 
     }
 

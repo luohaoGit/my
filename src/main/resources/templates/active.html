@@ -1,7 +1,7 @@
 <!DOCTYPE html>
-<html>
+<html xmlns:th="http://www.thymeleaf.org">
 <head>
-    <meta charset="UTF-8">
+    <meta charset="UTF-8" />
     <meta id="viewport" name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, minimum-scale=1, user-scalable=no" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta http-equiv="pragma" content="no-cache" />
@@ -9,9 +9,9 @@
     <meta http-equiv= "Expires" content= "0" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black" />
     <meta content="telephone=no" name="format-detection" />
-    <link rel="shortcut icon" href="http://www.suning.com/favicon.ico" type="image/x-icon">
-    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css">
-    <link rel="stylesheet" href="css/active.css">
+    <link rel="shortcut icon" href="http://www.suning.com/favicon.ico" type="image/x-icon" />
+    <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css" />
+    <link rel="stylesheet" href="../static/css/active.css" />
     <title>活动</title>
 </head>
 <body>
@@ -27,7 +27,7 @@
                         <div class="item-inner">
                             <div class="item-title label">地市</div>
                             <div class="item-input">
-                                <input type="text" id='picker01' placeholder="请选择地市">
+                                <input type="text" id='picker01' placeholder="请选择地市" />
                             </div>
                         </div>
                     </div>
@@ -38,7 +38,7 @@
                         <div class="item-inner">
                             <div class="item-title label">区县</div>
                             <div class="item-input">
-                                <input type="text" id='picker02' placeholder="请选择区县">
+                                <input type="text" id='picker02' placeholder="请选择区县" />
                             </div>
                         </div>
                     </div>
@@ -49,7 +49,7 @@
                         <div class="item-inner">
                             <div class="item-title label">营业厅</div>
                             <div class="item-input">
-                                <input type="text" id='picker03' placeholder="请选择营业厅">
+                                <input type="text" id='picker03' placeholder="请选择营业厅" />
                             </div>
                         </div>
                     </div>
@@ -60,7 +60,7 @@
             <ul class="activity-user">
                 <li>
                     <label class="label-checkbox item-content">
-                        <input type="radio" checked name="my-radio">
+                        <input type="radio" checked="checked" name="my-radio" />
                         <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
                         <div class="item-inner border-null">
                             <div class="item-title">客户</div>
@@ -69,7 +69,7 @@
                 </li>
                 <li>
                     <label class="label-checkbox item-content">
-                        <input type="radio" name="my-radio">
+                        <input type="radio" name="my-radio" />
                         <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
                         <div class="item-inner">
                             <div class="item-title">营业员</div>
@@ -78,7 +78,7 @@
                 </li>
             </ul>
         </div>
-        <h5 class="activity-tip" style="display: block">营业厅地址:<span id="">XXXXXX</span></h5>
+        <!--<h5 class="activity-tip" style="display: block">营业厅地址:<span id="">XXXXXX</span></h5>-->
         <div class="content-block">
             <p><a href="#" class="button button-submit">确认</a></p>
         </div>
@@ -86,14 +86,16 @@
 </div>
 
 <script type="text/javascript">
+    var urlPrefix = 'http://localhost:8080/';
     var urlConfig = {
-        cityUrl: 'data/tsconfig.json'
+        url : urlPrefix + 'area/pid/',
+        hallUrl : urlPrefix + 'hall/areaId/'
     }
 </script>
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='js/active.js' charset='utf-8'></script>
+<script type='text/javascript' src='../static/js/active.js' charset='utf-8'></script>
 
 </body>
 </html>

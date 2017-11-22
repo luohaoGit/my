@@ -28,9 +28,9 @@ public class PageController {
     @RequestMapping(value = "activity", produces = "text/html")
     public ModelAndView activity(@RequestParam String code) throws Exception{
         HashMap<String, Object> map = new HashMap<>();
-        WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
-        map.put("openId", wxMpOAuth2AccessToken.getOpenId());
-        return new ModelAndView("activity", map);
+        //WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
+        //map.put("openId", wxMpOAuth2AccessToken.getOpenId());
+        return new ModelAndView("active", map);
     }
 
 }

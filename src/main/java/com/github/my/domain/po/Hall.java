@@ -11,6 +11,8 @@ public class Hall {
 
     private Integer areaId;
 
+    private String addr;
+
     private Boolean deleted;
 
     public Integer getId() {
@@ -43,5 +45,13 @@ public class Hall {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getAddr() {
+        return addr;
+    }
+
+    public void setAddr(String addr) {
+        this.addr = addr;
     }
 }

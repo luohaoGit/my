@@ -5,10 +5,11 @@
         <id column="id" jdbcType="INTEGER" property="id"/>
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="area_id" jdbcType="INTEGER" property="areaId"/>
+        <result column="addr" jdbcType="VARCHAR" property="addr"/>
         <result column="deleted" jdbcType="BIT" property="deleted"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, name, area_id, deleted
+        id, name, area_id, addr, deleted
     </sql>
 
     <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">
@@ -16,5 +17,12 @@
         <include refid="Base_Column_List"/>
         from t_hall
         where id = #{id,jdbcType=INTEGER}
+    </select>
+
+    <select id="selectByAreaId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_hall
+        where area_id = #{areaId,jdbcType=INTEGER}
     </select>
 </mapper>

@@ -1,36 +1,30 @@
-d/**
+/**
  * Created by kuangshanshan1 on 17/11/21.
  */
 !(function(){
     var areaId = [];
     $.ajax({
-        url: urlConfig.cityUrl,
+        url: urlConfig.url + '1124',
         type: 'get',
         dataType: 'json',
-        data: {
-            id: '111'
-        },
         success: function(res){
+            res = convert(res);
             if(res.success){
                 handleAjax(res, '#picker01', function(value){
                     $.ajax({
-                        url: urlConfig.cityUrl,
+                        url: urlConfig.url + value,
                         type: 'get',
                         dataType: 'json',
-                        data: {
-                            id: value
-                        },
                         success: function(res){
+                            res = convert(res);
                             if(res.success){
                                 handleAjax(res, '#picker02', function(value){
                                     $.ajax({
-                                        url: urlConfig.cityUrl,
+                                        url: urlConfig.hallUrl + value,
                                         type: 'get',
                                         dataType: 'json',
-                                        data: {
-                                            id: value
-                                        },
                                         success: function(res){
+                                            res = convert(res);
                                             if(res.success){
                                                 handleAjax(res, '#picker03')
                                             }
@@ -43,7 +37,20 @@ d/**
                 })
             }
         }
-    })
+    });
+
+    function convert(res) {
+        var obj = {
+            "success": true,
+            "list": {}
+        };
+
+        $(res).forEach(function(item, index, array){
+            obj.list[item.id] = item.name;
+        });
+
+        return obj;
+    }
 
     function handleAjax(res, id, fn){
         var list = res.list,values = Object.keys(list), displayValues = [];
