@@ -18,10 +18,15 @@
     </select>
 
     <insert id="insert" parameterType="com.github.my.domain.po.UserHall">
-        insert into t_user_addr (user_id, hall_id)
+        insert into t_user_hall (user_id, hall_id)
         values (#{userId,jdbcType=INTEGER}, #{hallId,jdbcType=INTEGER})
         ON DUPLICATE KEY UPDATE
         hall_id = value(hall_id)
     </insert>
 
+    <update id="updateHall" parameterType="com.github.my.domain.po.UserHall">
+        update t_user_hall
+        set hall_id = #{hallId}
+        where user_id = #{userId}
+    </update>
 </mapper>

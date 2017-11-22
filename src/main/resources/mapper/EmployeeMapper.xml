@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.my.mapper.EmployeeMapper">
+    <resultMap id="BaseResultMap" type="com.github.my.domain.po.Employee">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="name" jdbcType="VARCHAR" property="name"/>
+        <result column="hall_id" jdbcType="INTEGER" property="hallId"/>
+        <result column="work_number" jdbcType="VARCHAR" property="workNumber"/>
+        <result column="open_id" jdbcType="VARCHAR" property="workNumber"/>
+        <result column="deleted" jdbcType="BIT" property="deleted"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, name, hall_id, work_number, open_id, deleted
+    </sql>
+
+    <select id="selectByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_employee
+        where openId = #{openId}
+    </select>
+
+    <insert id="insert" parameterType="com.github.my.domain.po.Employee">
+        insert into t_employee (name, hall_id, work_number, open_id)
+        values (
+        #{name}, #{hallId},
+        #{workNumber}, #{openId}
+        )
+    </insert>
+
+    <update id="updateHall" parameterType="com.github.my.domain.po.Employee">
+        update t_employee
+        set hall_id = #{hallId}
+        where open_id = #{openId}
+    </update>
+</mapper>

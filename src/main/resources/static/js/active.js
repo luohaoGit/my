@@ -59,7 +59,7 @@
         })
         $(id).picker({
             toolbarTemplate: '<header class="bar bar-nav">\
-                                      <button class="button button-link pull-left">按钮</button>\
+                                      <button class="button button-link pull-left"></button>\
                                       <button class="button button-link pull-right close-picker">确定</button>\
                                       <h1 class="title">标题</h1>\
                                       </header>',

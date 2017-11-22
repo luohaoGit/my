@@ -8,4 +8,5 @@ public interface UserHallMapper {
 
     int insert(UserHall userHall);
 
+    int updateHall(UserHall userHall);
 }
