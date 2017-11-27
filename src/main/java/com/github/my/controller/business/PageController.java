@@ -33,4 +33,9 @@ public class PageController {
         return new ModelAndView("active", map);
     }
 
+    @RequestMapping(value = "detail", produces = "text/html")
+    public ModelAndView detail(@RequestParam String code) throws Exception{
+        HashMap<String, Object> map = new HashMap<>();
+        return new ModelAndView("detail", map);
+    }
 }
