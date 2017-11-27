@@ -63,7 +63,7 @@ public class WxMenuController implements WxMpMenuService {
     WxMenuButton button22 = new WxMenuButton();
     button22.setType(MenuButtonType.VIEW);
     button22.setName("营业员");
-    button22.setUrl("http://139.196.141.0/static/detail.html");
+    button22.setUrl("http://139.196.141.0/detail?code=1");
 
     WxMenuButton button23 = new WxMenuButton();
     button23.setType(MenuButtonType.CLICK);
