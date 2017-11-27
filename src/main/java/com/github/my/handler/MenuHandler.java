@@ -26,8 +26,8 @@ public class MenuHandler extends AbstractHandler {
       return null;
     } else if(MenuButtonType.CLICK.equalsIgnoreCase(wxMessage.getEvent())){
         String eventKey = wxMessage.getEventKey();
-        if("MENU1".equals(eventKey)){
-            msg = "程序猿正在撸起袖子加油干！！！";
+        if("VERIFY_CODE".equals(eventKey)){
+            msg = "没有可用验证码";
         }
     }
 
