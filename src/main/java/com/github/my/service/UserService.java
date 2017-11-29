@@ -1,5 +1,6 @@
 package com.github.my.service;
 
+import com.github.my.domain.dto.RelationReq;
 import com.github.my.domain.po.User;
 
 /**
@@ -14,4 +15,6 @@ public interface UserService {
     void updateUser(User user);
 
     void updateSubcribe(User user);
+
+    void relation(RelationReq req);
 }

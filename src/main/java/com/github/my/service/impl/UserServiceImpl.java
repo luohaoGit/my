@@ -1,6 +1,11 @@
 package com.github.my.service.impl;
 
+import com.github.my.domain.dto.RelationReq;
+import com.github.my.domain.po.Employee;
 import com.github.my.domain.po.User;
+import com.github.my.domain.po.UserHall;
+import com.github.my.mapper.EmployeeMapper;
+import com.github.my.mapper.UserHallMapper;
 import com.github.my.mapper.UserMapper;
 import com.github.my.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -16,6 +21,12 @@ public class UserServiceImpl implements UserService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserHallMapper userHallMapper;
+
+    @Autowired
+    private EmployeeMapper employeeMapper;
 
     @Override
     public void addUser(User user) {
@@ -38,5 +49,42 @@ public class UserServiceImpl implements UserService {
     public void updateSubcribe(User user) {
         user.setUpdatetime(new Date());
         userMapper.updateSubcribeByOpenId(user);
+    }
+
+    @Override
+    public void relation(RelationReq req) {
+        String type = req.getType();
+        String openId = req.getOpenId();
+        Integer hallId = req.getHallId();
+        User user = userMapper.selectByOpenId(openId);
+        if(user != null) {
+            Integer userId = user.getId();
+            if ("C".equals(type)) {
+                //如果是客户
+                UserHall userHall = userHallMapper.selectByUnique(userId);
+                if(userHall != null){
+                    userHall.setHallId(hallId);
+                    userHallMapper.updateHall(userHall);
+                }else{
+                    userHall = new UserHall();
+                    userHall.setUserId(userId);
+                    userHall.setHallId(hallId);
+                    userHallMapper.insert(userHall);
+                }
+            } else if ("E".equals(type)) {
+                //如果是营业员
+                Employee employee = employeeMapper.selectByOpenId(openId);
+                if(employee != null){
+                    employee.setHallId(hallId);
+                    employeeMapper.updateHall(employee);
+                }else{
+                    employee = new Employee();
+                    employee.setOpenId(openId);
+                    employee.setHallId(hallId);
+                    employee.setDeleted(false);
+                    employeeMapper.insert(employee);
+                }
+            }
+        }
     }
 }

@@ -1,7 +1,9 @@
 package com.github.my.controller.business;
 
+import com.github.my.domain.dto.RelationReq;
 import com.github.my.service.UserService;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -15,8 +17,8 @@ public class UserController {
     @Autowired
     private UserService userService;
 
-    @RequestMapping("custom")
-    public void custom(){
+    @PostMapping("relation")
+    public void relation(RelationReq relationReq){
 
     }
 
