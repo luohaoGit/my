@@ -26,8 +26,9 @@ public class UserController {
     }
 
     @PostMapping("addr")
-    public void addr(UserAddr userAddr){
+    public int addr(UserAddr userAddr){
         addrService.addUserAddr(userAddr);
+        return 1;
     }
 
     @GetMapping("addr/{userId}")

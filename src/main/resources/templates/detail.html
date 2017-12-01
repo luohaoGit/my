@@ -24,32 +24,7 @@
         </div>
         <div class="tabs">
             <div id="tab1" class="tab active">
-                <div class="list-block">
-                    <ul>
-                        <li>
-                            <label class="label-checkbox item-content">
-                                <input type="radio" name="my-radio" />
-                                <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-                                <div class="item-inner">
-                                    <div class="item-title-row">
-                                        <div class="item-title">微信号1</div>
-                                    </div>
-                                </div>
-                            </label>
-                        </li>
-                        <li>
-                            <label class="label-checkbox item-content">
-                                <input type="radio" name="my-radio" />
-                                <div class="item-media"><i class="icon icon-form-checkbox"></i></div>
-                                <div class="item-inner">
-                                    <div class="item-title-row">
-                                        <div class="item-title">微信号2</div>
-                                    </div>
-                                </div>
-                            </label>
-                        </li>
-                    </ul>
-                </div>
+                <div class="list-block"><ul id="users"></ul></div>
                 <div class="list-block">
                     <ul>
                         <li>
@@ -58,7 +33,7 @@
                                 <div class="item-inner">
                                     <div class="item-title label">客户姓名</div>
                                     <div class="item-input">
-                                        <input type="text" placeholder="请输入姓名" />
+                                        <input id="userName" type="text" placeholder="请输入姓名" />
                                     </div>
                                 </div>
                             </div>
@@ -69,7 +44,7 @@
                                 <div class="item-inner">
                                     <div class="item-title label">客户号码</div>
                                     <div class="item-input">
-                                        <input type="tel" placeholder="请输入手机号" />
+                                        <input id="userPhone" type="tel" placeholder="请输入手机号" />
                                     </div>
                                 </div>
                             </div>
@@ -80,7 +55,7 @@
                                 <div class="item-inner">
                                     <div class="item-title label">邮寄地址</div>
                                     <div class="item-input">
-                                        <input type="tel" placeholder="请输入邮寄地址" />
+                                        <input id="userAdd" type="tel" placeholder="请输入邮寄地址" />
                                     </div>
                                 </div>
                             </div>
@@ -88,7 +63,7 @@
                     </ul>
                 </div>
                 <div class="content-block">
-                    <p><a href="#" class="button button-submit">确认</a></p>
+                    <p><a href="#" class="button button-submit" id="confirm1">确认</a></p>
                 </div>
             </div>
             <div id="tab2" class="tab">
@@ -161,9 +136,16 @@
 </div>
 
 <script type="text/javascript">
-    var urlConfig = {
-        cityUrl: 'data/tsconfig.json'
-    }
+    var hall = {
+        "id": 1,
+        "name": "营业厅A",
+        "areaId": 1126,
+        "addr": "营业厅A",
+        "deleted": false
+    };
+
+    var urlPrefix = 'http://localhost:8080/';
+
 </script>
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
