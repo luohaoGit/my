@@ -6,7 +6,7 @@ import java.util.List;
 
 public interface UserAddrMapper {
 
-    List<UserAddr> selectByUserId(Integer userId);
+    UserAddr selectByUserId(Integer userId);
 
     int insert(UserAddr userAddr);
 

@@ -17,7 +17,7 @@
         select
         <include refid="Base_Column_List"/>
         from t_employee
-        where openId = #{openId}
+        where open_id = #{openId}
     </select>
 
     <insert id="insert" parameterType="com.github.my.domain.po.Employee">
