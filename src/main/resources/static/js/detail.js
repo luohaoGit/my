@@ -11,13 +11,13 @@
             if(res && res.length > 0){
                 var users = '';
                 res.forEach(function(item){
-                    users += '<li> \
+                    users += '<li class="uu"> \
                     <label class="label-checkbox item-content"> \
-                    <input type="radio" class="uu" name="my-radio" value="' + item.id + '"/> \
+                    <input type="radio" name="my-radio" /> \
                     <div class="item-media"><i class="icon icon-form-checkbox"></i></div> \
                     <div class="item-inner"> \
                     <div class="item-title-row"> \
-                    <div class="item-title">' + item.wxnickname + '</div> \
+                    <div class="item-title uid" user-id="' + item.id + '">' + item.wxnickname + '</div> \
                     </div> \
                     </div> \
                     </label> \
@@ -31,24 +31,27 @@
 
     var curAddr = {};
     $('#users').on('click', '.uu', function(e){
-        var userId = e.target.value;
-        curAddr.userId = userId;
-        $.ajax({
-            url: urlPrefix + "user/addr/" + userId,
-            type: 'get',
-            dataType: 'json',
-            success: function(res){
-                $('#userName').val('');
-                $('#userPhone').val('');
-                $('#userAdd').val('');
-                if(res != null){
-                    curAddr = res;
-                    $('#userName').val(res.recipients);
-                    $('#userPhone').val(res.telephone);
-                    $('#userAdd').val(res.address);
+        var div = $(e.target).find('div .uid');
+        if(div && div.length > 0) {
+            var userId = div.attr('user-id');
+            curAddr.userId = userId;
+            $.ajax({
+                url: urlPrefix + "user/addr/" + userId,
+                type: 'get',
+                dataType: 'json',
+                success: function (res) {
+                    $('#userName').val('');
+                    $('#userPhone').val('');
+                    $('#userAdd').val('');
+                    if (res != null) {
+                        curAddr = res;
+                        $('#userName').val(res.recipients);
+                        $('#userPhone').val(res.telephone);
+                        $('#userAdd').val(res.address);
+                    }
                 }
-            }
-        });
+            });
+        }
     });
 
     $('#confirm1').on('click', function(){
