@@ -37,6 +37,14 @@
         where openId = #{openId}
     </select>
 
+    <select id="findByHallId" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+        select u.*
+        from t_user_hall uh
+        left join t_user u
+        on uh.user_id = u.id
+        where uh.hall_id = #{hallId}
+    </select>
+
     <update id="updateSubcribeByOpenId" parameterType="com.github.my.domain.po.User">
         update t_user
         <set>

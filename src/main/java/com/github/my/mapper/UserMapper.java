@@ -2,6 +2,8 @@ package com.github.my.mapper;
 
 import com.github.my.domain.po.User;
 
+import java.util.List;
+
 public interface UserMapper {
 
     void updateSubcribeByOpenId(User user);
@@ -19,4 +21,6 @@ public interface UserMapper {
     int updateByPrimaryKeySelective(User record);
 
     int updateByPrimaryKey(User record);
+
+    List<User> findByHallId(Integer hallId);
 }

@@ -1,6 +1,7 @@
 package com.github.my.controller.business;
 
 import com.github.my.domain.po.Hall;
+import com.github.my.domain.po.User;
 import com.github.my.service.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.PathVariable;
@@ -24,4 +25,13 @@ public class HallController {
         return hallService.queryByAreaId(areaId);
     }
 
+    @RequestMapping("{openId}")
+    public Hall hall(@PathVariable String openId){
+        return hallService.queryByEmployeeId(openId);
+    }
+
+    @RequestMapping("users/{hallId}")
+    public List<User> users(@PathVariable Integer hallId){
+        return hallService.queryUsersByHallId(hallId);
+    }
 }

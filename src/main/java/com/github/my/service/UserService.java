@@ -3,6 +3,8 @@ package com.github.my.service;
 import com.github.my.domain.dto.RelationReq;
 import com.github.my.domain.po.User;
 
+import java.util.List;
+
 /**
  * Created by luohao on 24/09/2017.
  */
@@ -17,4 +19,5 @@ public interface UserService {
     void updateSubcribe(User user);
 
     void relation(RelationReq req);
+
 }

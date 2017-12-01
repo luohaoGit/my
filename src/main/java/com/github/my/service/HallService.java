@@ -1,6 +1,7 @@
 package com.github.my.service;
 
 import com.github.my.domain.po.Hall;
+import com.github.my.domain.po.User;
 
 import java.util.List;
 
@@ -11,4 +12,7 @@ public interface HallService {
 
     List<Hall> queryByAreaId(Integer areaId);
 
+    Hall queryByEmployeeId(String openId);
+
+    List<User> queryUsersByHallId(Integer hallId);
 }

@@ -19,7 +19,7 @@ public class UserController {
 
     @PostMapping("relation")
     public void relation(RelationReq relationReq){
-
+        userService.relation(relationReq);
     }
 
 }
