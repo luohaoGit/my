@@ -14,7 +14,7 @@
                     users += '<li class="uu"> \
                     <label class="label-checkbox item-content"> \
                     <input type="radio" name="my-radio" /> \
-                    <div class="item-media"><i class="icon icon-form-checkbox"></i></div> \
+                    <div class="item-media"><i class="icon icon-form-checkbox uu"></i></div> \
                     <div class="item-inner"> \
                     <div class="item-title-row"> \
                     <div class="item-title uid" user-id="' + item.id + '">' + item.wxnickname + '</div> \
@@ -65,6 +65,28 @@
             success: function(res){
                 if(res == 1){
                     alert('保存成功');
+                }
+            }
+        });
+    });
+
+    $('#confirm2').on('click', function(){
+        var subTel = $('#subTel').val();
+        var subCode = $('#subCode').val();
+        $.ajax({
+            url: urlPrefix + "user/check",
+            type: 'post',
+            data: {
+                subTel: subTel,
+                subCode: subCode,
+                employeeId: employeeId,
+                hallId: hall.id
+            },
+            success: function(res){
+                if(res){
+                    alert("发放成功");
+                }else{
+                    alert("发放失败");
                 }
             }
         });

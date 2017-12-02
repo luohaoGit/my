@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.github.my.mapper.SubcribeMapper">
+    <resultMap id="BaseResultMap" type="com.github.my.domain.po.Subcribe">
+        <id column="id" jdbcType="INTEGER" property="id"/>
+        <result column="user_id" jdbcType="INTEGER" property="userId"/>
+        <result column="mobile" jdbcType="VARCHAR" property="mobile"/>
+        <result column="year" jdbcType="VARCHAR" property="year"/>
+        <result column="month" jdbcType="VARCHAR" property="month"/>
+        <result column="employee_id" jdbcType="INTEGER" property="employeeId"/>
+        <result column="hall_id" jdbcType="INTEGER" property="hallId"/>
+        <result column="verify_code" jdbcType="VARCHAR" property="verifyCode"/>
+        <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="deleted" jdbcType="BIT" property="deleted"/>
+    </resultMap>
+    <sql id="Base_Column_List">
+        id, user_id, mobile, year, month, employee_id, hall_id, verify_code, status, deleted
+    </sql>
+
+    <select id="selectByUserId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_subcribe
+        where user_id = #{userId} and year = #{year} and month = #{month} and status = 0
+    </select>
+
+    <select id="selectByYearMonth" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_subcribe
+        where year = #{year} and month = #{month} and verify_code = #{verifyCode} and status = 0
+    </select>
+
+    <select id="selectUnique" resultType="java.lang.Integer">
+        select
+        count(1)
+        from t_subcribe
+        where user_id = #{userId} and verify_code = #{verifyCode} and status = 0
+    </select>
+
+    <update id="updateUsed" parameterType="java.lang.Long">
+        update t_subcribe
+        set status = 1
+        where id = #{id}
+    </update>
+
+    <update id="update" parameterType="com.github.my.domain.po.Subcribe">
+        update t_subcribe
+        set
+        employee_id = #{employeeId,jdbcType=INTEGER},
+        hall_id = #{hallId,jdbcType=INTEGER},
+        status = 1
+        where id = #{id,jdbcType=INTEGER}
+    </update>
+
+</mapper>

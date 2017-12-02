@@ -1,9 +1,14 @@
 package com.github.my.handler;
 
+import com.github.my.domain.po.Subcribe;
+import com.github.my.domain.po.User;
+import com.github.my.service.SubcribeService;
+import com.github.my.service.UserService;
 import me.chanjar.weixin.common.session.WxSessionManager;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlMessage;
 import me.chanjar.weixin.mp.bean.message.WxMpXmlOutMessage;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Component;
 
 import java.util.Map;
@@ -12,6 +17,12 @@ import static me.chanjar.weixin.common.api.WxConsts.MenuButtonType;
 
 @Component
 public class MenuHandler extends AbstractHandler {
+
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private SubcribeService subcribeService;
 
   @Override
   public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
@@ -28,6 +39,14 @@ public class MenuHandler extends AbstractHandler {
         String eventKey = wxMessage.getEventKey();
         if("VERIFY_CODE".equals(eventKey)){
             msg = "没有可用验证码";
+            String openId = wxMessage.getFromUser();
+            User user = userService.findByOpenId(openId);
+            if(user != null){
+                Subcribe subcribe = subcribeService.getCurrentVerifyCode(user.getId());
+                if(subcribe != null && !"".equals(subcribe.getVerifyCode())){
+                    msg = "您本月的验证码为:" + subcribe.getVerifyCode();
+                }
+            }
         }
     }
 
