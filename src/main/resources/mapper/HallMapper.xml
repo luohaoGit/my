@@ -6,10 +6,11 @@
         <result column="name" jdbcType="VARCHAR" property="name"/>
         <result column="area_id" jdbcType="INTEGER" property="areaId"/>
         <result column="addr" jdbcType="VARCHAR" property="addr"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="deleted" jdbcType="BIT" property="deleted"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, name, area_id, addr, deleted
+        id, name, area_id, addr, type, deleted
     </sql>
 
     <select id="selectById" parameterType="java.lang.Integer" resultMap="BaseResultMap">

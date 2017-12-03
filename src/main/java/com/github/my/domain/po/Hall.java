@@ -13,6 +13,16 @@ public class Hall {
 
     private String addr;
 
+    private Integer type; //1:A类 2：B类
+
+    public Integer getType() {
+        return type;
+    }
+
+    public void setType(Integer type) {
+        this.type = type;
+    }
+
     private Boolean deleted;
 
     public Integer getId() {

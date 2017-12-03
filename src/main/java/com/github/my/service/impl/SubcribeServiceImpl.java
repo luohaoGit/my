@@ -3,6 +3,7 @@ package com.github.my.service.impl;
 import com.github.my.domain.dto.SubReq;
 import com.github.my.domain.po.Subcribe;
 import com.github.my.mapper.SubcribeMapper;
+import com.github.my.mapper.UserHallMapper;
 import com.github.my.service.SubcribeService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -19,10 +20,14 @@ public class SubcribeServiceImpl implements SubcribeService {
     @Autowired
     private SubcribeMapper subcribeMapper;
 
+    @Autowired
+    private UserHallMapper userHallMapper;
+
     @Override
     public boolean checkVerifyCode(SubReq subReq) {
         try {
             String subCode = subReq.getSubCode();
+            Integer hallId = subReq.getHallId();
             LocalDate now = LocalDate.now();
             int year = now.getYear();
             int month = now.getMonthValue();
@@ -35,9 +40,9 @@ public class SubcribeServiceImpl implements SubcribeService {
                     return subTel.equals(subReq.getSubTel());
                 }).findFirst().orElse(null);
 
-                if(subcribe != null){
+                if(subcribe != null && hallId.equals(subcribe.getHallId())){
                     subcribe.setEmployeeId(subReq.getEmployeeId());
-                    subcribe.setHallId(subReq.getHallId());
+                    subcribe.setHallId(hallId);
                     subcribeMapper.update(subcribe);
                     return true;
                 }

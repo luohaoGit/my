@@ -1,7 +1,11 @@
 package com.github.my.handler;
 
+import com.github.my.domain.po.Hall;
 import com.github.my.domain.po.Subcribe;
 import com.github.my.domain.po.User;
+import com.github.my.domain.po.UserHall;
+import com.github.my.mapper.HallMapper;
+import com.github.my.mapper.UserHallMapper;
 import com.github.my.service.SubcribeService;
 import com.github.my.service.UserService;
 import me.chanjar.weixin.common.session.WxSessionManager;
@@ -24,6 +28,12 @@ public class MenuHandler extends AbstractHandler {
     @Autowired
     private SubcribeService subcribeService;
 
+    @Autowired
+    private HallMapper hallMapper;
+
+    @Autowired
+    private UserHallMapper userHallMapper;
+
   @Override
   public WxMpXmlOutMessage handle(WxMpXmlMessage wxMessage,
                                   Map<String, Object> context, WxMpService weixinService,
@@ -42,9 +52,19 @@ public class MenuHandler extends AbstractHandler {
             String openId = wxMessage.getFromUser();
             User user = userService.findByOpenId(openId);
             if(user != null){
-                Subcribe subcribe = subcribeService.getCurrentVerifyCode(user.getId());
-                if(subcribe != null && !"".equals(subcribe.getVerifyCode())){
-                    msg = "您本月的验证码为:" + subcribe.getVerifyCode();
+                Integer userId = user.getId();
+                UserHall userHall = userHallMapper.selectByUnique(userId);
+                if(userHall != null){
+                    Integer hallId = userHall.getHallId();
+                    Hall hall = hallMapper.selectById(hallId);
+                    if(hall != null && 2 == hall.getType()){
+                        msg = "您已在B类营业厅登记，无法获取验证码";
+                    }else{
+                        Subcribe subcribe = subcribeService.getCurrentVerifyCode(userId);
+                        if(subcribe != null && !"".equals(subcribe.getVerifyCode())){
+                            msg = "您本月的验证码为:" + subcribe.getVerifyCode();
+                        }
+                    }
                 }
             }
         }

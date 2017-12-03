@@ -35,6 +35,7 @@ public class PageController {
 
     @RequestMapping(value = "detail", produces = "text/html")
     public ModelAndView detail(@RequestParam String code) throws Exception{
+        //todo 判断是否为营业员
         HashMap<String, Object> map = new HashMap<>();
         return new ModelAndView("detail", map);
     }
