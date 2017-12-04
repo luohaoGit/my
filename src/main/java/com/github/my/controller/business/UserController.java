@@ -42,7 +42,7 @@ public class UserController {
     }
 
     @PostMapping("check")
-    public boolean check(SubReq subReq){
+    public int check(SubReq subReq){
         return subcribeService.checkVerifyCode(subReq);
     }
 }

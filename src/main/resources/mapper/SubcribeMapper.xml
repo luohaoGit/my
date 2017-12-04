@@ -24,11 +24,11 @@
         where user_id = #{userId} and year = #{year} and month = #{month} and status = 0
     </select>
 
-    <select id="selectByYearMonth" resultMap="BaseResultMap">
+     <select id="selectByYearMonth" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_subcribe
-        where year = #{year} and month = #{month} and verify_code = #{verifyCode} and status = 0
+        where year = #{year} and month = #{month} and verify_code = #{verifyCode}
     </select>
 
     <select id="selectUnique" resultType="java.lang.Integer">

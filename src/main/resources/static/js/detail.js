@@ -3,6 +3,8 @@
  */
 !(function(){
 
+    $('#hallName').html(hall.name);
+
     $.ajax({
         url: urlPrefix + "hall/users/" + hall.id,
         type: 'get',
@@ -12,12 +14,12 @@
                 var users = '';
                 res.forEach(function(item){
                     users += '<li class="uu"> \
-                    <label class="label-checkbox item-content"> \
+                    <label class="label-checkbox item-content uu"> \
                     <input type="radio" name="my-radio" /> \
                     <div class="item-media"><i class="icon icon-form-checkbox uu"></i></div> \
-                    <div class="item-inner"> \
-                    <div class="item-title-row"> \
-                    <div class="item-title uid" user-id="' + item.id + '">' + item.wxnickname + '</div> \
+                    <div class="item-inner uu"> \
+                    <div class="item-title-row uu"> \
+                    <div class="item-title uid uu" user-id="' + item.id + '">' + item.wxnickname + '</div> \
                     </div> \
                     </div> \
                     </label> \
@@ -83,10 +85,18 @@
                 hallId: hall.id
             },
             success: function(res){
-                if(res){
-                    alert("发放成功");
-                }else{
+                console.log(res)
+                //-1：异常， 0：已发放， 1：成功， 2：用户不在所绑定的营业厅
+                if(res == -1){
                     alert("发放失败");
+                }else if(res == 0){
+                    alert("本月已发放");
+                }else if(res == 1){
+                    alert("发放成功");
+                }else if(res == 2){
+                    alert("该客户不在其绑定的营业厅");
+                }else{
+                    alert("系统错误，请联系管理员");
                 }
             }
         });

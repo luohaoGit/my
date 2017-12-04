@@ -2,6 +2,7 @@ package com.github.my.service.impl;
 
 import com.github.my.domain.dto.SubReq;
 import com.github.my.domain.po.Subcribe;
+import com.github.my.domain.po.UserHall;
 import com.github.my.mapper.SubcribeMapper;
 import com.github.my.mapper.UserHallMapper;
 import com.github.my.service.SubcribeService;
@@ -23,8 +24,13 @@ public class SubcribeServiceImpl implements SubcribeService {
     @Autowired
     private UserHallMapper userHallMapper;
 
+    /**
+     * -1：异常， 0：已发放， 1：成功， 2：用户不在所绑定的营业厅
+     * @param subReq
+     * @return
+     */
     @Override
-    public boolean checkVerifyCode(SubReq subReq) {
+    public int checkVerifyCode(SubReq subReq) {
         try {
             String subCode = subReq.getSubCode();
             Integer hallId = subReq.getHallId();
@@ -37,20 +43,28 @@ public class SubcribeServiceImpl implements SubcribeService {
                 Subcribe subcribe = subcribes.stream().filter(s -> {
                     String mobile = s.getMobile();
                     String subTel = mobile.substring(7, 11);
-                    return subTel.equals(subReq.getSubTel());
+                    return subTel.equals(subReq.getSubTel()) && 0 == s.getStatus();
                 }).findFirst().orElse(null);
 
-                if(subcribe != null && hallId.equals(subcribe.getHallId())){
-                    subcribe.setEmployeeId(subReq.getEmployeeId());
-                    subcribe.setHallId(hallId);
-                    subcribeMapper.update(subcribe);
-                    return true;
+                if(subcribe != null){
+                    Integer userId = subcribe.getUserId();
+                    UserHall userHall = userHallMapper.selectByUnique(userId);
+                    if(userHall != null && hallId.equals(userHall.getHallId())) {
+                        subcribe.setEmployeeId(subReq.getEmployeeId());
+                        subcribe.setHallId(hallId);
+                        subcribeMapper.update(subcribe);
+                        return 1;
+                    }else{
+                        return 2;
+                    }
+                }else{
+                    return 0;
                 }
             }
         }catch (Exception e){
-            return false;
+            return -1;
         }
-        return false;
+        return -1;
     }
 
     @Override

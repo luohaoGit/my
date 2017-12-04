@@ -8,7 +8,7 @@ import com.github.my.domain.po.Subcribe;
  */
 public interface SubcribeService {
 
-    boolean checkVerifyCode(SubReq subReq);
+    int checkVerifyCode(SubReq subReq);
 
     Subcribe getCurrentVerifyCode(Integer userId);
 
