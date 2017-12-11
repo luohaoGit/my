@@ -1,6 +1,15 @@
 /**
  * Created by kuangshanshan1 on 17/11/21.
  */
+Array.prototype.contains = function (obj) {
+    var i = this.length;
+    while (i--) {
+        if (this[i] === obj) {
+            return true;
+        }
+    }
+    return false;
+};
 !(function(){
     var areaId = [];
     $.ajax({
@@ -8,6 +17,12 @@
         type: 'get',
         dataType: 'json',
         success: function(res){
+            var arr = [1125, 1224];
+            res = $(res).map(function(index, item){
+               if(arr.contains(item.id)){
+                   return item;
+               }
+            });
             res = convert(res);
             if(res.success){
                 handleAjax(res, '#picker01', function(value){
@@ -84,4 +99,4 @@
         });
     }
 
-})()
+})();
