@@ -57,25 +57,37 @@ public class WxMenuController implements WxMpMenuService {
 
     WxMenuButton button21 = new WxMenuButton();
     button21.setType(MenuButtonType.VIEW);
-    button21.setName("营业厅");
-    button21.setUrl("http://139.196.141.0/activity?code=1");
+    button21.setName("营业员");
+    button21.setUrl("http://139.196.141.0/detail?code=1");
 
     WxMenuButton button22 = new WxMenuButton();
     button22.setType(MenuButtonType.VIEW);
-    button22.setName("营业员");
+    button22.setName("订购业务");
     button22.setUrl("http://139.196.141.0/detail?code=1");
 
-    WxMenuButton button23 = new WxMenuButton();
-    button23.setType(MenuButtonType.CLICK);
-    button23.setName("验证码");
-    button23.setKey("VERIFY_CODE");
 
     button2.getSubButtons().add(button21);
     button2.getSubButtons().add(button22);
-    button2.getSubButtons().add(button23);
+
+    WxMenuButton button3 = new WxMenuButton();
+    button3.setName("我的");
+
+    WxMenuButton button31 = new WxMenuButton();
+    button31.setType(MenuButtonType.VIEW);
+    button31.setName("营业厅");
+    button31.setUrl("http://139.196.141.0/activity?code=1");
+
+    WxMenuButton button32 = new WxMenuButton();
+    button32.setType(MenuButtonType.CLICK);
+    button32.setName("验证码");
+    button32.setKey("VERIFY_CODE");
+
+    button3.getSubButtons().add(button31);
+    button3.getSubButtons().add(button32);
 
     menu.getButtons().add(button1);
     menu.getButtons().add(button2);
+    menu.getButtons().add(button3);
 
     return this.wxService.getMenuService().menuCreate(menu);
   }
