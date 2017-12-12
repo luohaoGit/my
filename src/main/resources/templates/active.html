@@ -1,4 +1,4 @@
-<!DOCTYPE html>
+<!DOCTYPE HTML>
 <html xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8" />
@@ -86,8 +86,8 @@
 </div>
 
 <script type='text/javascript' src='/js/urlPrefix.js' charset='utf-8'></script>
-<script type="text/javascript">
-    var openId = '${openId}';
+<script type="text/javascript" th:inline="javascript">
+    var openId = [[${openId}]];
     var hallId = '';
     var urlConfig = {
         url : urlPrefix + 'area/pid/',

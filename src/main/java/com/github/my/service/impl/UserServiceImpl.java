@@ -12,12 +12,15 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.logging.Logger;
 
 /**
  * Created by luohao on 24/09/2017.
  */
 @Service
 public class UserServiceImpl implements UserService {
+
+    private Logger logger = Logger.getLogger(getClass().getName());
 
     @Autowired
     private UserMapper userMapper;
@@ -56,13 +59,12 @@ public class UserServiceImpl implements UserService {
         String openId = req.getOpenId();
         Integer hallId = req.getHallId();
         User user = userMapper.selectByOpenId(openId);
+        logger.info("test------openId:" + openId);
+        logger.info("test------hallId:" + hallId);
         if(user != null) {
             Integer userId = user.getId();
             UserHall userHall = userHallMapper.selectByUnique(userId);
-            if(userHall != null){
-                userHall.setHallId(hallId);
-                userHallMapper.updateHall(userHall);
-            }else{
+            if(userHall == null){
                 userHall = new UserHall();
                 userHall.setUserId(userId);
                 userHall.setHallId(hallId);
