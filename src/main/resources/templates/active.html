@@ -11,7 +11,7 @@
     <meta content="telephone=no" name="format-detection" />
     <link rel="shortcut icon" href="http://www.suning.com/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css" />
-    <link rel="stylesheet" href="../static/css/active.css" />
+    <link rel="stylesheet" href="/css/active.css" />
     <title>活动</title>
 </head>
 <body>
@@ -85,18 +85,20 @@
     </div>
 </div>
 
-<script type='text/javascript' src='../static/js/urlPrefix.js' charset='utf-8'></script>
+<script type='text/javascript' src='/js/urlPrefix.js' charset='utf-8'></script>
 <script type="text/javascript">
+    var openId = '${openId}';
+    var hallId = '';
     var urlConfig = {
         url : urlPrefix + 'area/pid/',
-        hallUrl : urlPrefix + 'hall/areaId/'
+        hallUrl : urlPrefix + 'hall/areaId/',
+        relationUrl: urlPrefix + 'user/relation'
     }
-
 </script>
 
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='../static/js/active.js' charset='utf-8'></script>
+<script type='text/javascript' src='/js/active.js' charset='utf-8'></script>
 
 </body>
 </html>

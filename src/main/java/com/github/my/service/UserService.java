@@ -1,6 +1,7 @@
 package com.github.my.service;
 
 import com.github.my.domain.dto.RelationReq;
+import com.github.my.domain.po.Employee;
 import com.github.my.domain.po.User;
 
 import java.util.List;
@@ -19,5 +20,7 @@ public interface UserService {
     void updateSubcribe(User user);
 
     void relation(RelationReq req);
+
+    Employee getEmployee(String openId);
 
 }

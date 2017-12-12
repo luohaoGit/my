@@ -1,5 +1,6 @@
 package com.github.my.controller;
 
+import me.chanjar.weixin.common.api.WxConsts;
 import me.chanjar.weixin.common.bean.menu.WxMenu;
 import me.chanjar.weixin.common.bean.menu.WxMenuButton;
 import me.chanjar.weixin.common.exception.WxErrorException;
@@ -75,7 +76,8 @@ public class WxMenuController implements WxMpMenuService {
     WxMenuButton button31 = new WxMenuButton();
     button31.setType(MenuButtonType.VIEW);
     button31.setName("营业厅");
-    button31.setUrl("http://139.196.141.0/activity?code=1");
+    button31.setUrl(wxService.oauth2buildAuthorizationUrl("http://www.yzzw100.cn/activity",
+            WxConsts.OAuth2Scope.SNSAPI_BASE, null));
 
     WxMenuButton button32 = new WxMenuButton();
     button32.setType(MenuButtonType.CLICK);

@@ -11,6 +11,11 @@ Array.prototype.contains = function (obj) {
     return false;
 };
 !(function(){
+    if(openId === ''){
+        alert("用户验证失败");
+        return;
+    }
+
     var areaId = [];
     $.ajax({
         url: urlConfig.url + '1124',
@@ -41,7 +46,9 @@ Array.prototype.contains = function (obj) {
                                         success: function(res){
                                             res = convert(res);
                                             if(res.success){
-                                                handleAjax(res, '#picker03')
+                                                handleAjax(res, '#picker03', function (v) {
+                                                    hallId = v;
+                                                })
                                             }
                                         }
                                     })
@@ -71,7 +78,7 @@ Array.prototype.contains = function (obj) {
         var list = res.list,values = Object.keys(list), displayValues = [];
         values.forEach(function(item){
             displayValues.push(list[item])
-        })
+        });
         $(id).picker({
             toolbarTemplate: '<header class="bar bar-nav">\
                                       <button class="button button-link pull-left"></button>\
@@ -87,7 +94,7 @@ Array.prototype.contains = function (obj) {
             ],
             onClose: function(arg){
                 var value = arg.value[0];
-                areaId.push(value);
+                //areaId.push(value);
                 fn&&fn(value);
             },
             formatValue: function (picker, value, displayValue){
@@ -98,5 +105,24 @@ Array.prototype.contains = function (obj) {
             }
         });
     }
+
+    $("#confirm").on('click', function(e){
+        if(hallId === ''){
+            alert("请选择营业厅");
+            return;
+        }
+        $.ajax({
+            url: urlConfig.relationUrl,
+            type: 'post',
+            dataType: 'json',
+            data: {
+                openId: openId,
+                hallId: hallId
+            },
+            success: function (res) {
+                alert("绑定成功");
+            }
+        });
+    });
 
 })();

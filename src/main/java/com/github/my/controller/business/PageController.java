@@ -28,15 +28,18 @@ public class PageController {
     @RequestMapping(value = "activity", produces = "text/html")
     public ModelAndView activity(@RequestParam String code) throws Exception{
         HashMap<String, Object> map = new HashMap<>();
-        //WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
-        //map.put("openId", wxMpOAuth2AccessToken.getOpenId());
+        WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
+        map.put("openId", wxMpOAuth2AccessToken.getOpenId());
         return new ModelAndView("active", map);
     }
 
     @RequestMapping(value = "detail", produces = "text/html")
     public ModelAndView detail(@RequestParam String code) throws Exception{
+        //WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
         //todo 判断是否为营业员
         HashMap<String, Object> map = new HashMap<>();
+        //String openId = wxMpOAuth2AccessToken.getOpenId();
+        //map.put("openId", openId);
         return new ModelAndView("detail", map);
     }
 }

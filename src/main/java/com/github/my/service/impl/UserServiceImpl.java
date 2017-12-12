@@ -53,38 +53,26 @@ public class UserServiceImpl implements UserService {
 
     @Override
     public void relation(RelationReq req) {
-        String type = req.getType();
         String openId = req.getOpenId();
         Integer hallId = req.getHallId();
         User user = userMapper.selectByOpenId(openId);
         if(user != null) {
             Integer userId = user.getId();
-            if ("C".equals(type)) {
-                //如果是客户
-                UserHall userHall = userHallMapper.selectByUnique(userId);
-                if(userHall != null){
-                    userHall.setHallId(hallId);
-                    userHallMapper.updateHall(userHall);
-                }else{
-                    userHall = new UserHall();
-                    userHall.setUserId(userId);
-                    userHall.setHallId(hallId);
-                    userHallMapper.insert(userHall);
-                }
-            } else if ("E".equals(type)) {
-                //如果是营业员
-                Employee employee = employeeMapper.selectByOpenId(openId);
-                if(employee != null){
-                    employee.setHallId(hallId);
-                    employeeMapper.updateHall(employee);
-                }else{
-                    employee = new Employee();
-                    employee.setOpenId(openId);
-                    employee.setHallId(hallId);
-                    employee.setDeleted(false);
-                    employeeMapper.insert(employee);
-                }
+            UserHall userHall = userHallMapper.selectByUnique(userId);
+            if(userHall != null){
+                userHall.setHallId(hallId);
+                userHallMapper.updateHall(userHall);
+            }else{
+                userHall = new UserHall();
+                userHall.setUserId(userId);
+                userHall.setHallId(hallId);
+                userHallMapper.insert(userHall);
             }
         }
+    }
+
+    @Override
+    public Employee getEmployee(String openId) {
+        return employeeMapper.selectByOpenId(openId);
     }
 }

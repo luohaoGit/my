@@ -1,2 +1,2 @@
-var urlPrefix = 'http://139.196.141.0/';
+var urlPrefix = 'http://www.yzzw100.cn/';
 //var urlPrefix = 'http://localhost:8080/';

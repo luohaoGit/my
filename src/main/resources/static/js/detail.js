@@ -33,9 +33,7 @@
 
     var curAddr = {};
     $('#users').on('click', function(e){
-        console.log(e.target)
         var label = $(e.target).parent('label');
-        console.log(label)
         if(label && label.length > 0) {
             var userId = label.attr('user-id');
             curAddr.userId = userId;
