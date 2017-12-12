@@ -1,5 +1,6 @@
 package com.github.my.controller.business;
 
+import com.github.my.domain.dto.CommonResp;
 import com.github.my.domain.dto.RelationReq;
 import com.github.my.domain.dto.SubReq;
 import com.github.my.domain.po.UserAddr;
@@ -26,8 +27,8 @@ public class UserController {
     private SubcribeService subcribeService;
 
     @PostMapping("relation")
-    public void relation(RelationReq relationReq){
-        userService.relation(relationReq);
+    public CommonResp relation(RelationReq relationReq){
+        return userService.relation(relationReq);
     }
 
     @PostMapping("addr")
