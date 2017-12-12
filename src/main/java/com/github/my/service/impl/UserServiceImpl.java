@@ -1,5 +1,6 @@
 package com.github.my.service.impl;
 
+import com.github.my.domain.dto.CommonResp;
 import com.github.my.domain.dto.RelationReq;
 import com.github.my.domain.po.Employee;
 import com.github.my.domain.po.User;
@@ -55,7 +56,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public void relation(RelationReq req) {
+    public CommonResp relation(RelationReq req) {
         String openId = req.getOpenId();
         Integer hallId = req.getHallId();
         User user = userMapper.selectByOpenId(openId);
@@ -69,7 +70,12 @@ public class UserServiceImpl implements UserService {
                 userHall.setUserId(userId);
                 userHall.setHallId(hallId);
                 userHallMapper.insert(userHall);
+                return new CommonResp(0, "绑定成功");
+            }else{
+                return new CommonResp(1, "请勿重复绑定");
             }
+        }else {
+            return new CommonResp(1, "没有找到用户");
         }
     }
 

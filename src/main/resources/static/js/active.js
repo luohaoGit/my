@@ -120,7 +120,7 @@ Array.prototype.contains = function (obj) {
                 hallId: hallId
             },
             success: function (res) {
-                alert("绑定成功");
+                alert(res.msg);
             }
         });
     });
