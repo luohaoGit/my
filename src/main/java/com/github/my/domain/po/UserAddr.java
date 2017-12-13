@@ -95,4 +95,23 @@ public class UserAddr {
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
     }
+
+    public Integer getEmployeeId() {
+        return employeeId;
+    }
+
+    public void setEmployeeId(Integer employeeId) {
+        this.employeeId = employeeId;
+    }
+
+    public Integer getHallId() {
+        return hallId;
+    }
+
+    public void setHallId(Integer hallId) {
+        this.hallId = hallId;
+    }
+
+    private Integer hallId;
+    private Integer employeeId;
 }

@@ -1,5 +1,6 @@
 package com.github.my.service;
 
+import com.github.my.domain.dto.CommonResp;
 import com.github.my.domain.po.UserAddr;
 
 /**
@@ -7,7 +8,7 @@ import com.github.my.domain.po.UserAddr;
  */
 public interface AddrService {
 
-    void addUserAddr(UserAddr userAddr);
+    CommonResp addUserAddr(UserAddr userAddr);
 
     UserAddr getUserAddr(Integer userId);
 }

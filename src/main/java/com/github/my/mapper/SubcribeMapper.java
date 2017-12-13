@@ -8,8 +8,9 @@ import java.util.List;
 public interface SubcribeMapper {
 
     Subcribe selectByUserId(@Param("userId") Integer userId,
-                                  @Param("year") String year,
-                                  @Param("month") String month);
+                            @Param("year") String year,
+                            @Param("month") String month,
+                            @Param("status") Integer status);
 
     List<Subcribe> selectByYearMonth(@Param("year") String year,
                                @Param("month") String month,
@@ -20,5 +21,7 @@ public interface SubcribeMapper {
     int selectUnique(Integer userId, String verifyCode);
 
     int update(Subcribe subcribe);
+
+    int insert(Subcribe subcribe);
 
 }

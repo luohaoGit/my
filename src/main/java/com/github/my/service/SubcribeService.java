@@ -12,4 +12,7 @@ public interface SubcribeService {
 
     Subcribe getCurrentVerifyCode(Integer userId);
 
+    Subcribe getCurrentByUserId(Integer userId);
+
+    int insert(Subcribe subcribe);
 }

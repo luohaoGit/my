@@ -43,9 +43,6 @@
 
         var curAddr = {};
         $('#users').on('click', function (e) {
-            if (isEmployee) {
-
-            }
             var label = $(e.target).parent('label');
             if (label && label.length > 0) {
                 var userId = label.attr('user-id');
@@ -73,14 +70,14 @@
             curAddr.recipients = $('#userName').val().trim();
             curAddr.telephone = $('#userPhone').val().trim();
             curAddr.address = $('#userAdd').val().trim();
+            curAddr.hallId = hall.id;
+            curAddr.employeeId = employee.id;
             $.ajax({
                 url: urlPrefix + "user/addr",
                 type: 'post',
                 data: curAddr,
                 success: function (res) {
-                    if (res == 1) {
-                        alert('保存成功');
-                    }
+                    alert(res.msg);
                 }
             });
         });

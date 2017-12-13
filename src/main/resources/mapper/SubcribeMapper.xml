@@ -10,21 +10,25 @@
         <result column="employee_id" jdbcType="INTEGER" property="employeeId"/>
         <result column="hall_id" jdbcType="INTEGER" property="hallId"/>
         <result column="verify_code" jdbcType="VARCHAR" property="verifyCode"/>
+        <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
         <result column="deleted" jdbcType="BIT" property="deleted"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, user_id, mobile, year, month, employee_id, hall_id, verify_code, status, deleted
+        id, user_id, mobile, year, month, employee_id, hall_id, verify_code, type, status, deleted
     </sql>
 
     <select id="selectByUserId" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_subcribe
-        where user_id = #{userId} and year = #{year} and month = #{month} and status = 0
+        where user_id = #{userId} and year = #{year} and month = #{month}
+        <if test="status != null">
+            and status = #{status}
+        </if>
     </select>
 
-     <select id="selectByYearMonth" resultMap="BaseResultMap">
+    <select id="selectByYearMonth" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_subcribe
@@ -52,5 +56,14 @@
         status = 1
         where id = #{id,jdbcType=INTEGER}
     </update>
+
+    <insert id="insert" parameterType="com.github.my.domain.po.Subcribe">
+        insert into t_subcribe (
+        user_id, mobile, year, month, employee_id, hall_id, verify_code, type, status, deleted)
+        values (
+        #{userId}, #{mobile}, #{year}, #{month}, #{employeeId},
+        #{hallId}, #{verifyCode}, #{type}, #{status}, #{deleted}
+        )
+    </insert>
 
 </mapper>

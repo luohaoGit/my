@@ -72,7 +72,21 @@ public class SubcribeServiceImpl implements SubcribeService {
         LocalDate now = LocalDate.now();
         int year = now.getYear();
         int month = now.getMonthValue();
-        return subcribeMapper.selectByUserId(userId, year + "", month + "");
+        return subcribeMapper.selectByUserId(userId, year + "", month + "", 0);
     }
+
+    @Override
+    public Subcribe getCurrentByUserId(Integer userId) {
+        LocalDate now = LocalDate.now();
+        int year = now.getYear();
+        int month = now.getMonthValue();
+        return subcribeMapper.selectByUserId(userId, year + "", month + "", null);
+    }
+
+    @Override
+    public int insert(Subcribe subcribe) {
+        return subcribeMapper.insert(subcribe);
+    }
+
 
 }

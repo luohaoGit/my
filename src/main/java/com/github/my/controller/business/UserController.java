@@ -32,9 +32,8 @@ public class UserController {
     }
 
     @PostMapping("addr")
-    public int addr(UserAddr userAddr){
-        addrService.addUserAddr(userAddr);
-        return 1;
+    public CommonResp addr(UserAddr userAddr){
+        return addrService.addUserAddr(userAddr);
     }
 
     @GetMapping("addr/{userId}")
