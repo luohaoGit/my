@@ -54,7 +54,7 @@ public class WxMenuController implements WxMpMenuService {
     button1.setUrl("http://cmcc.yueduyuele.com/Home/h5index");
 
     WxMenuButton button2 = new WxMenuButton();
-    button2.setName("现场活动");
+    button2.setName("营业员");
 
     WxMenuButton button21 = new WxMenuButton();
     button21.setType(MenuButtonType.VIEW);

@@ -3,8 +3,10 @@ package com.github.my.service.impl;
 import com.github.my.domain.po.Employee;
 import com.github.my.domain.po.Hall;
 import com.github.my.domain.po.User;
+import com.github.my.domain.po.UserHall;
 import com.github.my.mapper.EmployeeMapper;
 import com.github.my.mapper.HallMapper;
+import com.github.my.mapper.UserHallMapper;
 import com.github.my.mapper.UserMapper;
 import com.github.my.service.HallService;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -26,6 +28,9 @@ public class HallServiceImpl implements HallService {
 
     @Autowired
     private UserMapper userMapper;
+
+    @Autowired
+    private UserHallMapper userHallMapper;
 
     @Override
     public List<Hall> queryByAreaId(Integer areaId) {
@@ -55,6 +60,19 @@ public class HallServiceImpl implements HallService {
     @Override
     public List<User> queryUsersByHallId(Integer hallId) {
         return userMapper.findByHallId(hallId);
+    }
+
+    @Override
+    public Hall queryByUserOpenId(String openId) {
+        User user = userMapper.selectByOpenId(openId);
+        if(user != null){
+            UserHall userHall = userHallMapper.selectByUnique(user.getId());
+            if(userHall != null){
+                Integer hallId = userHall.getHallId();
+                return hallMapper.selectById(hallId);
+            }
+        }
+        return null;
     }
 
 }

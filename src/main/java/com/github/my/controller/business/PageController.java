@@ -40,7 +40,12 @@ public class PageController {
     public ModelAndView activity(@RequestParam String code) throws Exception{
         HashMap<String, Object> map = new HashMap<>();
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
-        map.put("openId", wxMpOAuth2AccessToken.getOpenId());
+        String openId = wxMpOAuth2AccessToken.getOpenId();
+        map.put("openId", openId);
+
+        Hall hall = hallService.queryByUserOpenId(openId);
+        map.put("hall", JSON.toJSONString(hall));
+
         return new ModelAndView("active", map);
     }
 
