@@ -7,10 +7,11 @@
         <result column="hall_id" jdbcType="INTEGER" property="hallId"/>
         <result column="work_number" jdbcType="VARCHAR" property="workNumber"/>
         <result column="open_id" jdbcType="VARCHAR" property="workNumber"/>
+        <result column="business_url" jdbcType="VARCHAR" property="businessUrl"/>
         <result column="deleted" jdbcType="BIT" property="deleted"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, name, hall_id, work_number, open_id, deleted
+        id, name, hall_id, work_number, open_id, business_url, deleted
     </sql>
 
     <select id="selectByOpenId" parameterType="java.lang.String" resultMap="BaseResultMap">

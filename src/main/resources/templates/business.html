@@ -1,0 +1,23 @@
+<!DOCTYPE HTML>
+<html xmlns:th="http://www.thymeleaf.org">
+<head>
+    <title>index</title>
+    <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
+</head>
+<body>
+</body>
+<script type="text/javascript" th:inline="javascript">
+    var employee = [[${employee}]];
+    if(employee !== 'null'){
+        employee = JSON.parse(employee);
+        var businessUrl = employee.businessUrl;
+        if(businessUrl){
+            window.location.href = businessUrl;
+        }else{
+            alert("您还没有订购地址");
+        }
+    }else{
+        alert("您不是营业员");
+    }
+</script>
+</html>

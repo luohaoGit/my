@@ -15,6 +15,8 @@ public class Employee {
 
     private String openId;
 
+    private String businessUrl;
+
     private Boolean deleted;
 
     public Integer getId() {
@@ -63,5 +65,13 @@ public class Employee {
 
     public void setDeleted(Boolean deleted) {
         this.deleted = deleted;
+    }
+
+    public String getBusinessUrl() {
+        return businessUrl;
+    }
+
+    public void setBusinessUrl(String businessUrl) {
+        this.businessUrl = businessUrl;
     }
 }
