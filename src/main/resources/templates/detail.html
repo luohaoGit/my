@@ -11,7 +11,7 @@
     <meta content="telephone=no" name="format-detection" />
     <link rel="shortcut icon" href="http://www.suning.com/favicon.ico" type="image/x-icon" />
     <link rel="stylesheet" href="//g.alicdn.com/msui/sm/0.6.2/css/sm.min.css" />
-    <link rel="stylesheet" href="../static/css/active.css" />
+    <link rel="stylesheet" href="/css/active.css" />
     <title>详情</title>
 </head>
 <body>
@@ -125,19 +125,14 @@
 </div>
 
 <script type='text/javascript' src='/js/urlPrefix.js' charset='utf-8'></script>
-<script type="text/javascript">
-    var employeeId = 1;
-    var hall = {
-        "id": 1,
-        "name": "营业厅A",
-        "areaId": 1126,
-        "addr": "营业厅A",
-        "deleted": false
-    };
+<script type="text/javascript" th:inline="javascript">
+    var openId = [[${openId}]];
+    var employee = [[${employee}]];
+    var hall = [[${hall}]];
 </script>
 <script type='text/javascript' src='//g.alicdn.com/sj/lib/zepto/zepto.min.js' charset='utf-8'></script>
 <script type='text/javascript' src='//g.alicdn.com/msui/sm/0.6.2/js/sm.min.js' charset='utf-8'></script>
-<script type='text/javascript' src='../static/js/detail.js' charset='utf-8'></script>
+<script type='text/javascript' src='/js/detail.js' charset='utf-8'></script>
 
 </body>
 </html>

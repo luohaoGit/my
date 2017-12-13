@@ -1,5 +1,10 @@
 package com.github.my.controller.business;
 
+import com.alibaba.fastjson.JSON;
+import com.github.my.domain.po.Employee;
+import com.github.my.domain.po.Hall;
+import com.github.my.service.HallService;
+import com.github.my.service.UserService;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -20,6 +25,12 @@ public class PageController {
     @Autowired
     private WxMpService wxService;
 
+    @Autowired
+    private UserService userService;
+
+    @Autowired
+    private HallService hallService;
+
     @RequestMapping(value = "/", produces = "text/html")
     public ModelAndView index() {
         return new ModelAndView("index");
@@ -35,11 +46,17 @@ public class PageController {
 
     @RequestMapping(value = "detail", produces = "text/html")
     public ModelAndView detail(@RequestParam String code) throws Exception{
-        //WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
-        //todo 判断是否为营业员
+        WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
         HashMap<String, Object> map = new HashMap<>();
-        //String openId = wxMpOAuth2AccessToken.getOpenId();
-        //map.put("openId", openId);
+        String openId = wxMpOAuth2AccessToken.getOpenId();
+        map.put("openId", openId);
+
+        Employee employee = userService.getEmployee(openId);
+        map.put("employee", JSON.toJSONString(employee));
+
+        Hall hall = hallService.queryByEmployeeId(openId);
+        map.put("hall", JSON.toJSONString(hall));
+
         return new ModelAndView("detail", map);
     }
 }
