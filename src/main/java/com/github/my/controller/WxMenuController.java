@@ -68,9 +68,15 @@ public class WxMenuController implements WxMpMenuService {
     button22.setUrl(wxService.oauth2buildAuthorizationUrl("http://www.yzzw100.cn/business",
             WxConsts.OAuth2Scope.SNSAPI_BASE, null));
 
+    WxMenuButton button23 = new WxMenuButton();
+    button23.setType(MenuButtonType.VIEW);
+    button23.setName("本店报表");
+    button23.setUrl(wxService.oauth2buildAuthorizationUrl("http://www.yzzw100.cn/table",
+            WxConsts.OAuth2Scope.SNSAPI_BASE, null));
 
     button2.getSubButtons().add(button21);
     button2.getSubButtons().add(button22);
+    button2.getSubButtons().add(button23);
 
     WxMenuButton button3 = new WxMenuButton();
     button3.setName("我的");

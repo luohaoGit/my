@@ -77,4 +77,14 @@ public class PageController {
 
         return new ModelAndView("business", map);
     }
+
+    @RequestMapping(value = "table", produces = "text/html")
+    public ModelAndView table(@RequestParam String code) throws Exception{
+        HashMap<String, Object> map = new HashMap<>();
+        WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
+        String openId = wxMpOAuth2AccessToken.getOpenId();
+        map.put("openId", openId);
+
+        return new ModelAndView("table", map);
+    }
 }
