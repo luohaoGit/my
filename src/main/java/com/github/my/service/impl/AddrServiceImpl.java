@@ -10,6 +10,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
 
 /**
  * Created by luohao on 01/12/2017.
@@ -59,6 +60,8 @@ public class AddrServiceImpl implements AddrService {
             subcribe.setEmployeeId(userAddr.getEmployeeId());
             subcribe.setType(0);
             subcribe.setStatus(1);
+            subcribe.setCreateTime(new Date());
+            subcribe.setSubTime(new Date());
             subcribe.setDeleted(false);
             subcribeService.insert(subcribe);
             return new CommonResp(0, "保存成功，礼品领取成功");

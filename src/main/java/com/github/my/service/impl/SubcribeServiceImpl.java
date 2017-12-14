@@ -1,8 +1,10 @@
 package com.github.my.service.impl;
 
 import com.github.my.domain.dto.SubReq;
+import com.github.my.domain.po.Employee;
 import com.github.my.domain.po.Subcribe;
 import com.github.my.domain.po.UserHall;
+import com.github.my.mapper.EmployeeMapper;
 import com.github.my.mapper.SubcribeMapper;
 import com.github.my.mapper.UserHallMapper;
 import com.github.my.service.SubcribeService;
@@ -11,6 +13,7 @@ import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
 import java.util.List;
+import java.util.Map;
 
 /**
  * Created by luohao on 02/12/2017.
@@ -23,6 +26,9 @@ public class SubcribeServiceImpl implements SubcribeService {
 
     @Autowired
     private UserHallMapper userHallMapper;
+
+    @Autowired
+    private EmployeeMapper employeeMapper;
 
     /**
      * -1：异常， 0：已发放， 1：成功， 2：用户不在所绑定的营业厅
@@ -86,6 +92,20 @@ public class SubcribeServiceImpl implements SubcribeService {
     @Override
     public int insert(Subcribe subcribe) {
         return subcribeMapper.insert(subcribe);
+    }
+
+    @Override
+    public List<Subcribe> getByHall(Integer hallId) {
+        return subcribeMapper.selectByHallId(hallId);
+    }
+
+    @Override
+    public Map<String, Integer> getReport(String empOpenId) {
+        Employee employee = employeeMapper.selectByOpenId(empOpenId);
+        if(employee != null){
+            Integer hallId = employee.getHallId();
+        }
+        return null;
     }
 
 

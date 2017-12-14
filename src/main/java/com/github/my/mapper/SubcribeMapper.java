@@ -24,4 +24,6 @@ public interface SubcribeMapper {
 
     int insert(Subcribe subcribe);
 
+    List<Subcribe> selectByHallId(Integer hallId);
+
 }

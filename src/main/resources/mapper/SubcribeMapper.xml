@@ -12,10 +12,12 @@
         <result column="verify_code" jdbcType="VARCHAR" property="verifyCode"/>
         <result column="type" jdbcType="INTEGER" property="type"/>
         <result column="status" jdbcType="INTEGER" property="status"/>
+        <result column="create_time" jdbcType="TIMESTAMP" property="createTime"/>
+        <result column="sub_time" jdbcType="TIMESTAMP" property="subTime"/>
         <result column="deleted" jdbcType="BIT" property="deleted"/>
     </resultMap>
     <sql id="Base_Column_List">
-        id, user_id, mobile, year, month, employee_id, hall_id, verify_code, type, status, deleted
+        id, user_id, mobile, year, month, employee_id, hall_id, verify_code, type, status, create_time, sub_time, deleted
     </sql>
 
     <select id="selectByUserId" resultMap="BaseResultMap">
@@ -42,9 +44,17 @@
         where user_id = #{userId} and verify_code = #{verifyCode} and status = 0
     </select>
 
+    <select id="selectByHallId" resultMap="BaseResultMap">
+        select
+        <include refid="Base_Column_List"/>
+        from t_subcribe
+        where hall_id=#{hallId}
+    </select>
+
     <update id="updateUsed" parameterType="java.lang.Long">
         update t_subcribe
-        set status = 1
+        set status = 1,
+        sub_time = now()
         where id = #{id}
     </update>
 
@@ -53,16 +63,17 @@
         set
         employee_id = #{employeeId,jdbcType=INTEGER},
         hall_id = #{hallId,jdbcType=INTEGER},
-        status = 1
+        status = 1,
+        sub_time = now()
         where id = #{id,jdbcType=INTEGER}
     </update>
 
     <insert id="insert" parameterType="com.github.my.domain.po.Subcribe">
         insert into t_subcribe (
-        user_id, mobile, year, month, employee_id, hall_id, verify_code, type, status, deleted)
+        user_id, mobile, year, month, employee_id, hall_id, verify_code, type, status, create_time, sub_time, deleted)
         values (
         #{userId}, #{mobile}, #{year}, #{month}, #{employeeId},
-        #{hallId}, #{verifyCode}, #{type}, #{status}, #{deleted}
+        #{hallId}, #{verifyCode}, #{type}, #{status}, #{createTime}, #{subTime}, #{deleted}
         )
     </insert>
 

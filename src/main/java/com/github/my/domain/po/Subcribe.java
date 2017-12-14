@@ -1,5 +1,7 @@
 package com.github.my.domain.po;
 
+import java.util.Date;
+
 /**
  * Created by luohao on 02/12/2017.
  */
@@ -20,6 +22,26 @@ public class Subcribe {
     private Integer hallId;
 
     private Integer type;
+
+    private Date createTime;
+
+    private Date subTime;
+
+    public Date getSubTime() {
+        return subTime;
+    }
+
+    public void setSubTime(Date subTime) {
+        this.subTime = subTime;
+    }
+
+    public Date getCreateTime() {
+        return createTime;
+    }
+
+    public void setCreateTime(Date createTime) {
+        this.createTime = createTime;
+    }
 
     public Integer getType() {
         return type;
