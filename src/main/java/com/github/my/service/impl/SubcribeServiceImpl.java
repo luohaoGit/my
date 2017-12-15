@@ -8,10 +8,13 @@ import com.github.my.mapper.EmployeeMapper;
 import com.github.my.mapper.SubcribeMapper;
 import com.github.my.mapper.UserHallMapper;
 import com.github.my.service.SubcribeService;
+import com.github.my.utils.DateUtil;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.time.LocalDate;
+import java.util.Date;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -94,18 +97,40 @@ public class SubcribeServiceImpl implements SubcribeService {
         return subcribeMapper.insert(subcribe);
     }
 
+    /**
+     * 查找营业厅所有发放
+     * @param hallId
+     * @return
+     */
     @Override
-    public List<Subcribe> getByHall(Integer hallId) {
-        return subcribeMapper.selectByHallId(hallId);
+    public List<Subcribe> getSentByHall(Integer hallId) {
+        return subcribeMapper.selectSentByHallId(hallId);
     }
 
     @Override
     public Map<String, Integer> getReport(String empOpenId) {
+        Map<String, Integer> map = new HashMap<>();
         Employee employee = employeeMapper.selectByOpenId(empOpenId);
         if(employee != null){
             Integer hallId = employee.getHallId();
+            List<Subcribe> subcribes = getSentByHall(hallId);
+            if(subcribes != null && subcribes.size() > 0){
+                map.put("all", subcribes.size());
+                Long thisMonth = subcribes.stream().filter(s -> {
+                    Date subTime = s.getSubTime();
+                    return subTime != null && DateUtil.isThisMonth(subTime.getTime());
+                }).count();
+
+                Long today = subcribes.stream().filter(s -> {
+                    Date subTime = s.getSubTime();
+                    return subTime != null && DateUtil.isToday(subTime.getTime());
+                }).count();
+
+                map.put("month", thisMonth.intValue());
+                map.put("today", today.intValue());
+            }
         }
-        return null;
+        return map;
     }
 
 

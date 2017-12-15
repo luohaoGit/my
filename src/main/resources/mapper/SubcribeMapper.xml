@@ -44,11 +44,11 @@
         where user_id = #{userId} and verify_code = #{verifyCode} and status = 0
     </select>
 
-    <select id="selectByHallId" resultMap="BaseResultMap">
+    <select id="selectSentByHallId" resultMap="BaseResultMap">
         select
         <include refid="Base_Column_List"/>
         from t_subcribe
-        where hall_id=#{hallId}
+        where hall_id=#{hallId} and status = 1
     </select>
 
     <update id="updateUsed" parameterType="java.lang.Long">

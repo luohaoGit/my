@@ -19,7 +19,7 @@ public interface SubcribeService {
 
     int insert(Subcribe subcribe);
 
-    List<Subcribe> getByHall(Integer hallId);
+    List<Subcribe> getSentByHall(Integer hallId);
 
     Map<String, Integer> getReport(String empOpenId);
 }

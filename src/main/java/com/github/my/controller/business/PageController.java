@@ -4,10 +4,10 @@ import com.alibaba.fastjson.JSON;
 import com.github.my.domain.po.Employee;
 import com.github.my.domain.po.Hall;
 import com.github.my.service.HallService;
+import com.github.my.service.SubcribeService;
 import com.github.my.service.UserService;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
-import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -16,6 +16,7 @@ import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * Created by luohao on 19/11/2017.
@@ -32,6 +33,9 @@ public class PageController {
 
     @Autowired
     private HallService hallService;
+
+    @Autowired
+    private SubcribeService subcribeService;
 
     @RequestMapping(value = "/", produces = "text/html")
     public ModelAndView index() {
@@ -86,6 +90,9 @@ public class PageController {
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
         String openId = wxMpOAuth2AccessToken.getOpenId();
         map.put("openId", openId);
+
+        Map<String, Integer> report = subcribeService.getReport(openId);
+        map.put("report", report);
 
         return new ModelAndView("table", map);
     }
