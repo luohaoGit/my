@@ -7,12 +7,14 @@ import com.github.my.service.HallService;
 import com.github.my.service.UserService;
 import me.chanjar.weixin.mp.api.WxMpService;
 import me.chanjar.weixin.mp.bean.result.WxMpOAuth2AccessToken;
+import org.apache.http.HttpResponse;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.ModelAndView;
 
+import javax.servlet.http.HttpServletResponse;
 import java.util.HashMap;
 
 /**
@@ -66,7 +68,7 @@ public class PageController {
     }
 
     @RequestMapping(value = "business", produces = "text/html")
-    public ModelAndView business(@RequestParam String code) throws Exception{
+    public void business(@RequestParam String code, HttpServletResponse response) throws Exception{
         HashMap<String, Object> map = new HashMap<>();
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
         String openId = wxMpOAuth2AccessToken.getOpenId();
@@ -75,7 +77,7 @@ public class PageController {
         Employee employee = userService.getEmployee(openId);
         map.put("employee", JSON.toJSONString(employee));
 
-        return new ModelAndView("business", map);
+        response.sendRedirect(employee.getBusinessUrl());
     }
 
     @RequestMapping(value = "table", produces = "text/html")
