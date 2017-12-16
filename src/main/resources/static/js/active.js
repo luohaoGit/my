@@ -16,7 +16,7 @@ Array.prototype.contains = function (obj) {
         return;
     }
 
-    if(hall != ''){
+    if(hall !== 'null'){
         hall = JSON.parse(hall);
         $("body").empty();
         $("body").append("您已绑定营业厅：" + hall.name);
