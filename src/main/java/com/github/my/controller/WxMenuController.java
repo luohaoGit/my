@@ -58,7 +58,7 @@ public class WxMenuController implements WxMpMenuService {
 
     WxMenuButton button21 = new WxMenuButton();
     button21.setType(MenuButtonType.VIEW);
-    button21.setName("营业员");
+    button21.setName("资料登记");
     button21.setUrl(wxService.oauth2buildAuthorizationUrl("http://www.yzzw100.cn/detail",
             WxConsts.OAuth2Scope.SNSAPI_BASE, null));
 
@@ -74,8 +74,8 @@ public class WxMenuController implements WxMpMenuService {
     button23.setUrl(wxService.oauth2buildAuthorizationUrl("http://www.yzzw100.cn/table",
             WxConsts.OAuth2Scope.SNSAPI_BASE, null));
 
-    button2.getSubButtons().add(button21);
     button2.getSubButtons().add(button22);
+    button2.getSubButtons().add(button21);
     button2.getSubButtons().add(button23);
 
     WxMenuButton button3 = new WxMenuButton();
@@ -89,7 +89,7 @@ public class WxMenuController implements WxMpMenuService {
 
     WxMenuButton button32 = new WxMenuButton();
     button32.setType(MenuButtonType.CLICK);
-    button32.setName("验证码");
+    button32.setName("图书码");
     button32.setKey("VERIFY_CODE");
 
     button3.getSubButtons().add(button31);

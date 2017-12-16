@@ -14,7 +14,7 @@
     <style>
         .tips{
             padding: 0 14px;
-            font-size: 13px;
+            font-size: 16px;
             color: #666;
         }
     </style>
@@ -50,18 +50,20 @@
         </ul>
     </div>
     <div class="tips">
-        注:上述数据包括客户一小时内退订数量,仅供参考,不作为结算依据。正式结算数量以中国移动次月报表为准。
+        注:上述数据仅供参考，存在客户欠费、客户销号、订购一小时内退订等手机话费不能计费情况。本报表不作为结算依据，正式结算数量以中国移动结算报表为准。
+    </div>
+    <br/>
+    <div class="tips">
+        如需业务咨询、代为作文投稿，可以点击公众号左下角留言按键，拍照、录音、留言都可以，我们客服人员将尽快回复您。
     </div>
 </div>
+</body>
 
 <script type="text/javascript" th:inline="javascript">
     var employee = [[${employee}]];
-
     if(employee === 'null'){
-        $("body").empty();
         alert("您不是营业员");
+        $("body").empty();
     }
 </script>
-
-</body>
 </html>

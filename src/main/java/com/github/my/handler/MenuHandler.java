@@ -48,7 +48,7 @@ public class MenuHandler extends AbstractHandler {
     } else if(MenuButtonType.CLICK.equalsIgnoreCase(wxMessage.getEvent())){
         String eventKey = wxMessage.getEventKey();
         if("VERIFY_CODE".equals(eventKey)){
-            msg = "没有可用验证码";
+            msg = "没有可用图书码";
             String openId = wxMessage.getFromUser();
             User user = userService.findByOpenId(openId);
             if(user != null){
@@ -58,11 +58,11 @@ public class MenuHandler extends AbstractHandler {
                     Integer hallId = userHall.getHallId();
                     Hall hall = hallMapper.selectById(hallId);
                     if(hall != null && 2 == hall.getType()){
-                        msg = "您已在B类营业厅登记，无法获取验证码";
+                        msg = "您已在B类营业厅登记，无法获取图书码";
                     }else{
                         Subcribe subcribe = subcribeService.getCurrentVerifyCode(userId);
                         if(subcribe != null && !"".equals(subcribe.getVerifyCode())){
-                            msg = "您本月的验证码为:" + subcribe.getVerifyCode();
+                            msg = "您本月的图书码为:" + subcribe.getVerifyCode();
                         }
                     }
                 }

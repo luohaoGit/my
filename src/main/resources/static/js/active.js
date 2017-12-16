@@ -19,7 +19,9 @@ Array.prototype.contains = function (obj) {
     if(hall !== 'null'){
         hall = JSON.parse(hall);
         $("body").empty();
-        $("body").append("您已绑定营业厅：" + hall.name);
+        var html = '<div class="hall">您已绑定:' + hall.name + '</div>';
+        html += '<br/><br/><div class="tips">如需咨询、作文投稿，可以点击公众号左下角留言按键，拍照、录音、留言都可以，我们客服人员将尽快回复您。</div>';
+        $("body").append(html);
         return;
     }
 
