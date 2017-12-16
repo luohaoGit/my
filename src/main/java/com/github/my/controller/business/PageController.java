@@ -72,7 +72,7 @@ public class PageController {
     }
 
     @RequestMapping(value = "business", produces = "text/html")
-    public void business(@RequestParam String code, HttpServletResponse response) throws Exception{
+    public ModelAndView business(@RequestParam String code, HttpServletResponse response) throws Exception{
         HashMap<String, Object> map = new HashMap<>();
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
         String openId = wxMpOAuth2AccessToken.getOpenId();
@@ -81,7 +81,15 @@ public class PageController {
         Employee employee = userService.getEmployee(openId);
         map.put("employee", JSON.toJSONString(employee));
 
-        response.sendRedirect(employee.getBusinessUrl());
+        if(employee != null) {
+            String businessUrl = employee.getBusinessUrl();
+            if (businessUrl != null) {
+                response.sendRedirect(businessUrl);
+            }
+            return null;
+        }else{
+            return new ModelAndView("business", map);
+        }
     }
 
     @RequestMapping(value = "table", produces = "text/html")
@@ -90,6 +98,9 @@ public class PageController {
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
         String openId = wxMpOAuth2AccessToken.getOpenId();
         map.put("openId", openId);
+
+        Employee employee = userService.getEmployee(openId);
+        map.put("employee", JSON.toJSONString(employee));
 
         Map<String, Integer> report = subcribeService.getReport(openId);
         map.put("report", report);

@@ -5,20 +5,10 @@
     <meta http-equiv="Content-Type" content="text/html; charset=UTF-8" />
 </head>
 <body>
-    <a id="businessUrl"></a>
 </body>
 <script type="text/javascript" th:inline="javascript">
     var employee = [[${employee}]];
-    if(employee !== 'null'){
-        employee = JSON.parse(employee);
-        var businessUrl = employee.businessUrl;
-        if(businessUrl){
-            document.getElementById("businessUrl").href=businessUrl;
-            document.getElementById("businessUrl").click();
-        }else{
-            alert("您还没有订购地址");
-        }
-    }else{
+    if(employee === 'null'){
         alert("您不是营业员");
     }
 </script>

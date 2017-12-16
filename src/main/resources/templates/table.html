@@ -54,5 +54,14 @@
     </div>
 </div>
 
+<script type="text/javascript" th:inline="javascript">
+    var employee = [[${employee}]];
+
+    if(employee === 'null'){
+        $("body").empty();
+        alert("您不是营业员");
+    }
+</script>
+
 </body>
 </html>
