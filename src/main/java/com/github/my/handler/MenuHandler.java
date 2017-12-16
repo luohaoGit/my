@@ -58,7 +58,7 @@ public class MenuHandler extends AbstractHandler {
                     Integer hallId = userHall.getHallId();
                     Hall hall = hallMapper.selectById(hallId);
                     if(hall != null && 2 == hall.getType()){
-                        msg = "您已在B类营业厅登记，无法获取图书码";
+                        msg = "您好，“扬子作文学堂”的订购客户，您获赠的图书通过邮寄方式送达您登记的地址。";
                     }else{
                         Subcribe subcribe = subcribeService.getCurrentVerifyCode(userId);
                         if(subcribe != null && !"".equals(subcribe.getVerifyCode())){

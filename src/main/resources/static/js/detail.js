@@ -5,10 +5,7 @@
 
     var isEmployee = employee !== 'null';
 
-    if(!isEmployee){
-        alert("您不是营业员");
-        $("body").empty();
-    }else {
+    if(isEmployee){
 
         employee = JSON.parse(employee);
         hall = JSON.parse(hall);

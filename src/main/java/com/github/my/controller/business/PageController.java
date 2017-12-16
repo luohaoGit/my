@@ -63,6 +63,11 @@ public class PageController {
         map.put("openId", openId);
 
         Employee employee = userService.getEmployee(openId);
+
+        if(employee == null){
+            return new ModelAndView("notEmp", map);
+        }
+
         map.put("employee", JSON.toJSONString(employee));
 
         Hall hall = hallService.queryByEmployeeId(openId);
@@ -88,7 +93,7 @@ public class PageController {
             }
             return null;
         }else{
-            return new ModelAndView("business", map);
+            return new ModelAndView("notEmp", map);
         }
     }
 
@@ -100,6 +105,11 @@ public class PageController {
         map.put("openId", openId);
 
         Employee employee = userService.getEmployee(openId);
+
+        if(employee == null){
+            return new ModelAndView("notEmp", map);
+        }
+
         map.put("employee", JSON.toJSONString(employee));
 
         Map<String, Integer> report = subcribeService.getReport(openId);
