@@ -132,6 +132,19 @@ Array.prototype.contains = function (obj) {
                 alert(res.msg);
             }
         });
+
+        var userInfo = {};
+        userInfo.recipients = $('#userName').val().trim();
+        userInfo.telephone = $('#userPhone').val().trim();
+        userInfo.address = $('#userAdd').val().trim();
+        $.ajax({
+            url: urlPrefix + "user/addr",
+            type: 'post',
+            data: userInfo,
+            success: function (res) {
+
+            }
+        });
     });
 
 })();

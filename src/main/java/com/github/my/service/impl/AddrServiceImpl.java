@@ -43,28 +43,32 @@ public class AddrServiceImpl implements AddrService {
             userAddrMapper.insert(userAddr);
         }
 
-        //首次发放暂时放在这里，首先判断本月是否已领取
-        Subcribe subcribe = subcribeService.getCurrentByUserId(userId);
-        if(subcribe != null){
-            return new CommonResp(0, "保存成功，本月已领取过礼品");
+        if(userAddr.isCheckFirstSend()) {
+            //首次发放暂时放在这里，首先判断本月是否已领取
+            Subcribe subcribe = subcribeService.getCurrentByUserId(userId);
+            if (subcribe != null) {
+                return new CommonResp(0, "保存成功，本月已领取过礼品");
+            } else {
+                LocalDate now = LocalDate.now();
+                int year = now.getYear();
+                int month = now.getMonthValue();
+                subcribe = new Subcribe();
+                subcribe.setUserId(userId);
+                subcribe.setMobile(userAddr.getTelephone());
+                subcribe.setYear(year + "");
+                subcribe.setMonth(month + "");
+                subcribe.setHallId(userAddr.getHallId());
+                subcribe.setEmployeeId(userAddr.getEmployeeId());
+                subcribe.setType(0);
+                subcribe.setStatus(1);
+                subcribe.setCreateTime(new Date());
+                subcribe.setSubTime(new Date());
+                subcribe.setDeleted(false);
+                subcribeService.insert(subcribe);
+                return new CommonResp(0, "保存成功，礼品领取成功");
+            }
         }else{
-            LocalDate now = LocalDate.now();
-            int year = now.getYear();
-            int month = now.getMonthValue();
-            subcribe = new Subcribe();
-            subcribe.setUserId(userId);
-            subcribe.setMobile(userAddr.getTelephone());
-            subcribe.setYear(year + "");
-            subcribe.setMonth(month + "");
-            subcribe.setHallId(userAddr.getHallId());
-            subcribe.setEmployeeId(userAddr.getEmployeeId());
-            subcribe.setType(0);
-            subcribe.setStatus(1);
-            subcribe.setCreateTime(new Date());
-            subcribe.setSubTime(new Date());
-            subcribe.setDeleted(false);
-            subcribeService.insert(subcribe);
-            return new CommonResp(0, "保存成功，礼品领取成功");
+            return new CommonResp(0, "保存成功");
         }
     }
 

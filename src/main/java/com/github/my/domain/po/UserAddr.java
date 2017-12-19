@@ -112,6 +112,15 @@ public class UserAddr {
         this.hallId = hallId;
     }
 
+    public boolean isCheckFirstSend() {
+        return checkFirstSend;
+    }
+
+    public void setCheckFirstSend(boolean checkFirstSend) {
+        this.checkFirstSend = checkFirstSend;
+    }
+
     private Integer hallId;
     private Integer employeeId;
+    private boolean checkFirstSend;
 }

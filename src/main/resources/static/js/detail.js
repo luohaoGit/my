@@ -64,6 +64,7 @@
         curAddr.recipients = $('#userName').val().trim();
         curAddr.telephone = $('#userPhone').val().trim();
         curAddr.address = $('#userAdd').val().trim();
+        curAddr.checkFirstSend = true;
         curAddr.hallId = hall.id;
         curAddr.employeeId = employee.id;
         $.ajax({
