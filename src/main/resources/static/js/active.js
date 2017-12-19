@@ -16,6 +16,10 @@ Array.prototype.contains = function (obj) {
         return;
     }
 
+    if(user != 'null'){
+        user = JSON.parse(user);
+    }
+
     if(hall !== 'null'){
         hall = JSON.parse(hall);
         $("body").empty();
@@ -134,6 +138,7 @@ Array.prototype.contains = function (obj) {
         });
 
         var userInfo = {};
+        userInfo.userId = user.id;
         userInfo.recipients = $('#userName').val().trim();
         userInfo.telephone = $('#userPhone').val().trim();
         userInfo.address = $('#userAdd').val().trim();

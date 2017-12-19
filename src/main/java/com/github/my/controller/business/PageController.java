@@ -3,6 +3,7 @@ package com.github.my.controller.business;
 import com.alibaba.fastjson.JSON;
 import com.github.my.domain.po.Employee;
 import com.github.my.domain.po.Hall;
+import com.github.my.domain.po.User;
 import com.github.my.service.HallService;
 import com.github.my.service.SubcribeService;
 import com.github.my.service.UserService;
@@ -48,6 +49,9 @@ public class PageController {
         WxMpOAuth2AccessToken wxMpOAuth2AccessToken = wxService.oauth2getAccessToken(code);
         String openId = wxMpOAuth2AccessToken.getOpenId();
         map.put("openId", openId);
+
+        User user = userService.findByOpenId(openId);
+        map.put("user", user);
 
         Hall hall = hallService.queryByUserOpenId(openId);
         map.put("hall", JSON.toJSONString(hall));
