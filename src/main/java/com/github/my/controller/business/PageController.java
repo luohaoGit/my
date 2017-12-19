@@ -51,7 +51,7 @@ public class PageController {
         map.put("openId", openId);
 
         User user = userService.findByOpenId(openId);
-        map.put("user", user);
+        map.put("user", JSON.toJSONString(user));
 
         Hall hall = hallService.queryByUserOpenId(openId);
         map.put("hall", JSON.toJSONString(hall));

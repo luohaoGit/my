@@ -16,7 +16,6 @@ Array.prototype.contains = function (obj) {
         return;
     }
 
-    alert(user)
     if(user !== 'null'){
         user = JSON.parse(user);
     }
