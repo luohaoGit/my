@@ -2,7 +2,6 @@
  * Created by kuangshanshan1 on 17/11/21.
  */
 !(function(){
-    alert(employee);
     employee = JSON.parse(employee);
     hall = JSON.parse(hall);
 
@@ -13,6 +12,7 @@
         type: 'get',
         dataType: 'json',
         success: function (res) {
+            alert(JSON.stringify(res))
             if (res && res.length > 0) {
                 var users = '';
                 res.forEach(function (item) {
