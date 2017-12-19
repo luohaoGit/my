@@ -3,9 +3,8 @@
  */
 !(function(){
 
-    alert(hall)
-    alert(hall.name)
-    alert("test")
+    employee = JSON.parse(employee);
+    hall = JSON.parse(hall);
     $('#hallName').html(hall.name);
 
     $.ajax({
