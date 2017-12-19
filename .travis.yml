@@ -5,6 +5,10 @@ script: mvn clean package -Dmaven.test.skip=true
 branches:
   only:
   - master
+cache:
+  directories:
+  - .autoconf
+  - $HOME/.m2
 notifications:
   email:
   - 553569682@qq.com
