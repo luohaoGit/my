@@ -3,6 +3,9 @@
  */
 !(function(){
 
+    alert(hall)
+    alert(hall.name)
+    alert("test")
     $('#hallName').html(hall.name);
 
     $.ajax({
