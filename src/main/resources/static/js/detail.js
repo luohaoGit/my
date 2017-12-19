@@ -2,6 +2,7 @@
  * Created by kuangshanshan1 on 17/11/21.
  */
 !(function(){
+    alert(hall)
     employee = JSON.parse(employee);
     hall = JSON.parse(hall);
 
