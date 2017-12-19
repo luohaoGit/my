@@ -12,7 +12,6 @@
         type: 'get',
         dataType: 'json',
         success: function (res) {
-            alert(JSON.stringify(res))
             if (res && res.length > 0) {
                 var users = '';
                 res.forEach(function (item) {
