@@ -29,7 +29,7 @@ Array.prototype.contains = function (obj) {
         return;
     }
 
-    var areaId = [];
+    var hallList = [];
     $.ajax({
         url: urlConfig.url + '1124',
         type: 'get',
@@ -57,10 +57,18 @@ Array.prototype.contains = function (obj) {
                                         type: 'get',
                                         dataType: 'json',
                                         success: function(res){
+                                            hallList = res;
                                             res = convert(res);
                                             if(res.success){
                                                 handleAjax(res, '#picker03', function (v) {
                                                     hallId = v;
+                                                    if(hallList.length > 0){
+                                                        $(hallList).forEach(function(item, index, array){
+                                                            if(item.id == v && item.type == 1){
+                                                                $("#userAdd").hide();
+                                                            }
+                                                        });
+                                                    }
                                                 })
                                             }
                                         }
