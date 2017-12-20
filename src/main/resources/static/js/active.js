@@ -64,8 +64,12 @@ Array.prototype.contains = function (obj) {
                                                     hallId = v;
                                                     if(hallList.length > 0){
                                                         $(hallList).forEach(function(item, index, array){
-                                                            if(item.id == v && item.type == 1){
-                                                                $("#userAdd").hide();
+                                                            if(item.id == v){
+                                                                if(item.type == 1) {
+                                                                    $("#userAddLi").hide();
+                                                                }else if(item.type == 2){
+                                                                    $("#userAddLi").show();
+                                                                }
                                                             }
                                                         });
                                                     }
