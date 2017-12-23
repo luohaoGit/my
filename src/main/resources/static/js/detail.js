@@ -38,6 +38,7 @@
     $("#search").on("change", function(e){
         var nickName = $(e.target).val();
         if(nickName) {
+            $('#users').empty();
             $.ajax({
                 url: urlPrefix + "hall/users/" + hall.id + "/" + nickName,
                 type: 'get',
