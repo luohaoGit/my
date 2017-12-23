@@ -14,23 +14,30 @@
         success: function (res) {
             if (res && res.length > 0) {
                 var users = '';
-                res.forEach(function (item) {
-                    users += '<li> \
-                <label class="label-checkbox item-content" user-id="' + item.id + '"> \
-                <input type="radio" name="my-radio" /> \
-                <div class="item-media"><i class="icon icon-form-checkbox"></i></div> \
-                <div class="item-inner"> \
-                <div class="item-title-row"> \
-                <div class="item-title">' + item.wxnickname + '</div> \
-                </div> \
-                </div> \
-                </label> \
-                </li>';
+                res.forEach(function (item, index) {
+                    if(index <= 10) {
+                        users += '<li> \
+                        <label class="label-checkbox item-content" user-id="' + item.id + '"> \
+                        <input type="radio" name="my-radio" /> \
+                        <div class="item-media"><i class="icon icon-form-checkbox"></i></div> \
+                        <div class="item-inner"> \
+                        <div class="item-title-row"> \
+                        <div class="item-title">' + item.wxnickname + '</div> \
+                        </div> \
+                        </div> \
+                        </label> \
+                        </li>';
+                    }
                 });
 
                 $('#users').empty().append(users);
             }
         }
+    });
+
+    $("#search").on("change", function(e){
+        var nickName = $(e.target).val();
+        alert(nickName)
     });
 
     var curAddr = {};

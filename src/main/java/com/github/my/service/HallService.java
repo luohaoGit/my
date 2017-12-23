@@ -16,5 +16,7 @@ public interface HallService {
 
     List<User> queryUsersByHallId(Integer hallId);
 
+    List<User> queryUsersByHallIdNick(Integer hallId, String nickName);
+
     Hall queryByUserOpenId(String openId);
 }

@@ -63,6 +63,11 @@ public class HallServiceImpl implements HallService {
     }
 
     @Override
+    public List<User> queryUsersByHallIdNick(Integer hallId, String nickName) {
+        return userMapper.findHallNickName(hallId, nickName);
+    }
+
+    @Override
     public Hall queryByUserOpenId(String openId) {
         User user = userMapper.selectByOpenId(openId);
         if(user != null){

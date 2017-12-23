@@ -34,4 +34,9 @@ public class HallController {
     public List<User> users(@PathVariable Integer hallId){
         return hallService.queryUsersByHallId(hallId);
     }
+
+    @RequestMapping("users/{hallId}/{nickName}")
+    public List<User> usersByNickName(@PathVariable Integer hallId, @PathVariable String nickName){
+        return hallService.queryUsersByHallIdNick(hallId, nickName);
+    }
 }
